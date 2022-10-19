@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: myapp-argo
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://gitlab.com/nanuchi/argocd-app-config.git
+    targetRevision: HEAD
+    path: dev #El path que va a seguir a partir de la URL dada 
+  destination: 
+    server: https://kubernetes.default.svc #Esta dirección dado que es interno, sino habría que poner 
+    #un endpoint con la dirección del cluester deseado
+    namespace: myapp #Nuestra aplicacion se va a desplegar en un cluster distinto del que está el ArgoCD
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true #Para que cree el namespace si este no existe aún 
+
+    automated:
+      selfHeal: true #Para que compruebe posibles cambios automaticamente
+      prune: true #same 
+
+
+
