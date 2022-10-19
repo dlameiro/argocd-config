@@ -1,0 +1,24 @@
+#hello world
+#Esto va a desplegar una imagen de ejemplo para probar todo
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp
+spec:
+  selector:
+    matchLabels:
+      app: myapp
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: myapp
+        image: hello-world:latest
+        ports:
+        - containerPort: 8080
+
+
+
