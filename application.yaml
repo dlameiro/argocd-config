@@ -7,7 +7,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://gitlab.com/nanuchi/argocd-app-config.git
+    repoURL: https://github.com/dlameiro/argocd-config.git
     targetRevision: HEAD
     path: dev #El path que va a seguir a partir de la URL dada 
   destination: 
@@ -18,7 +18,7 @@ spec:
   syncPolicy:
     syncOptions:
     - CreateNamespace=true #Para que cree el namespace si este no existe aún 
-
+    #Hay que activarle manualmente la sincronizacion automatica. Está deshabilitada inicialmente por seguridad
     automated:
       selfHeal: true #Para que compruebe posibles cambios automaticamente
       prune: true #same 
